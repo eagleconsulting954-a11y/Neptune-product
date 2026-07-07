@@ -5,16 +5,16 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="container header-inner">
         <Link className="brand" href="/">
-          <span className="brand-mark">◈</span>
-          <span>NEPTUNE<small>Vessel Command CRM</small></span>
+          <span className="brand-mark">✦</span>
+          <span>NEPTUNE<small>Vessel Command</small></span>
         </Link>
         <nav className="nav-links">
-          <Link href="/#command">Command</Link>
-          <Link href="/#departments">Departments</Link>
-          <Link href="/#workflows">Workflows</Link>
+          <Link href="/#platform">Platform</Link>
+          <Link href="/#modules">Modules</Link>
+          <Link href="/resources">Resources</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/login">Login</Link>
-          <Link className="btn gold" href="/login">Open dashboard</Link>
+          <Link className="btn gold" href="/checkout">Get access</Link>
         </nav>
       </div>
     </header>
