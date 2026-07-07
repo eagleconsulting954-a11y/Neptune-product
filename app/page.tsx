@@ -1,29 +1,27 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 
-const departmentCards = [
-  ["Captain", "One command view for vessel readiness, port-call risk, open approvals, certificates, incidents, and department status."],
-  ["Chief Engineer", "Machinery health, planned maintenance, defects, spares, work orders, bunker records, and class-critical actions."],
-  ["Chief Officer", "Deck operations, cargo readiness, safety rounds, permits, inspections, drills, and document evidence."],
-  ["Crewing / HR", "Crew certificates, contracts, rest-hour exceptions, medicals, travel, onboarding, and watch readiness."],
-  ["Procurement", "Purchase requests, vendor status, inventory thresholds, delivery windows, and vessel requisitions."],
-  ["Shore Management", "Fleet-level oversight, escalation dashboards, audit trails, compliance posture, and executive reporting."]
+const moduleGroups = [
+  ["Command", "Fleet overview, vessel accounts, live risk, approvals, and executive readiness."],
+  ["Voyage Ops", "Voyages, navigation, cargo, port calls, ETA windows, and agent coordination."],
+  ["Crew", "Crew lists, certificates, watch schedules, medicals, travel, and rest-hour visibility."],
+  ["Maintenance", "PMS, work orders, machinery status, inventory risk, and critical quotes."],
+  ["Safety & Compliance", "PTW, inspections, incidents, eORB, certificates, audit trails, and evidence packs."],
+  ["Workspace", "Resources, analytics, settings, permissions, subscription, and operational memory."]
 ];
 
-const workflowCards = [
-  ["Vessel CRM", "Every vessel becomes an account record with contacts, history, open actions, visits, documents, and operational context."],
-  ["Department Handover", "Standardized handover boards keep the Captain, Chief Engineer, Chief Officer, and shore team aligned."],
-  ["Approval Center", "Centralize permit, purchase, defect, inspection, certificate, and incident approvals with owners and timestamps."],
-  ["Evidence Vault", "Attach certificates, photos, forms, checklists, and notes directly to vessel and department workflows."],
-  ["Readiness Scoring", "Turn scattered operational data into a clear readiness score for port calls, audits, inspections, and management review."],
-  ["Operational Memory", "Build a searchable history of what happened, who approved it, what was attached, and what needs attention next."]
+const activity = [
+  ["14:11", "Chief Mate submitted PTW #0047", "Awaiting Master signature"],
+  ["13:45", "Certificate pack validated", "No blocking errors"],
+  ["11:20", "Critical quote updated", "19 items matched"],
+  ["09:05", "eORB entry locked", "Countersign recorded"]
 ];
 
-const opsRows = [
-  ["MT Atlantic Pioneer", "Captain", "PSC readiness review", "Due today"],
-  ["MV Neptune Trader", "Engineering", "Aux generator work order", "Parts pending"],
-  ["MV Meridian Star", "Deck", "Hot work permit approval", "Master signoff"],
-  ["MT Pacific Crown", "Procurement", "Critical spares reorder", "Vendor quote"]
+const resources = [
+  ["Captain handover board", "Make every watch change, port call, and operational action visible in one place."],
+  ["PSC readiness pack", "Turn certificates, photos, checklists, and approvals into inspection-ready evidence."],
+  ["Engineering work queue", "Prioritize machinery defects, PMS actions, spares, running hours, and class-critical work."],
+  ["Procurement control", "Connect purchase requests, critical quotes, vendors, delivery status, and vessel needs."]
 ];
 
 export default function HomePage() {
@@ -31,111 +29,63 @@ export default function HomePage() {
     <>
       <SiteHeader />
       <main>
-        <section className="hero product-hero" id="command">
+        <section className="hero premium-hero" id="platform">
           <div className="container hero-grid">
             <div>
-              <div className="eyebrow">Vessel Command CRM</div>
-              <h1>The operating dashboard for captains and department heads.</h1>
-              <p className="lede">Neptune is a login-gated maritime CRM and vessel command platform built for the people running the ship: Captains, Chief Engineers, Chief Officers, crewing teams, procurement, and shore management.</p>
-              <p className="lede small-lede">It replaces scattered spreadsheets, email threads, document folders, and manual follow-ups with one premium command center for vessel readiness, department workflows, approvals, evidence, and operational history.</p>
+              <div className="eyebrow">Premium Vessel Command CRM</div>
+              <h1>The Neptune1 command UI, rebuilt as the real product.</h1>
+              <p className="lede">Neptune is the login-gated operating layer for captains, heads of department, and shore managers. It brings vessel accounts, approvals, evidence, crew, maintenance, compliance, and port-call activity into one premium mobile-first command center.</p>
               <div className="hero-actions">
-                <Link href="/login" className="btn gold">Open dashboard</Link>
-                <Link href="/#departments" className="btn">View departments</Link>
-                <Link href="/pricing" className="btn">Pricing</Link>
+                <Link className="btn gold" href="/checkout">Start with Stripe</Link>
+                <Link className="btn" href="/resources">View resources</Link>
+                <Link className="btn" href="/login">Login</Link>
               </div>
-              <div className="trust-strip">
-                <span>Built for vessel operations</span>
-                <span>Role-based dashboards</span>
-                <span>Audit-ready history</span>
-              </div>
+              <div className="trust-strip"><span>Paywalled dashboard</span><span>Captain-first workflows</span><span>Audit-ready records</span></div>
             </div>
-            <div className="command-console panel">
-              <div className="console-top">
-                <div><span className="eyebrow">Live Vessel View</span><h3>MT Atlantic Pioneer</h3></div>
-                <span className="status green-status">Ready 92%</span>
-              </div>
-              <div className="console-grid">
-                <div className="console-metric"><span>Open actions</span><b>18</b><small>6 critical</small></div>
-                <div className="console-metric"><span>Certificates</span><b>3</b><small>expiring soon</small></div>
-                <div className="console-metric"><span>Work orders</span><b>11</b><small>4 overdue</small></div>
-                <div className="console-metric"><span>Approvals</span><b>7</b><small>Captain queue</small></div>
-              </div>
-              <div className="ops-list">
-                {opsRows.map(([vessel, department, action, state]) => (
-                  <div className="ops-row" key={action}>
-                    <div><b>{action}</b><span>{vessel} · {department}</span></div>
-                    <em>{state}</em>
-                  </div>
-                ))}
-              </div>
+            <div className="phone-frame glass premium-glow">
+              <div className="phone-top"><button>☰</button><span>⌘ Search vessel records...</span><button>🔔</button></div>
+              <div className="phone-hero"><p className="eyebrow">Live Command Center</p><h3>Every vessel, approval, and risk signal.</h3></div>
+              <div className="phone-metrics"><div><b>6</b><span>Vessels</span></div><div><b>97%</b><span>Health</span></div><div><b>3</b><span>Approvals</span></div><div><b>38h</b><span>ETA</span></div></div>
+              <div className="phone-map"><i style={{left:"22%",top:"38%"}}>Atlantic</i><i style={{left:"56%",top:"25%"}}>Pacific</i><i style={{left:"68%",top:"62%"}}>Aurora</i></div>
             </div>
           </div>
         </section>
 
-        <section className="section product-section" id="departments">
+        <section className="section compact-section" id="modules">
           <div className="container">
-            <div className="section-head">
-              <div><div className="eyebrow">Department Command</div><h2>One system for every onboard department.</h2></div>
-              <p>Neptune is not a generic CRM. It is structured around how a vessel actually operates: command, engineering, deck, crew, safety, procurement, and shore-side oversight.</p>
-            </div>
-            <div className="role-grid">
-              {departmentCards.map(([title, text]) => (
-                <article className="role-card" key={title}>
-                  <span className="role-kicker">Role workspace</span>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section product-section" id="workflows">
-          <div className="container split-showcase">
-            <div>
-              <div className="eyebrow">Operational CRM</div>
-              <h2>Vessel records, workflows, and evidence in one place.</h2>
-              <p className="lede small-lede">Instead of treating CRM as only sales contacts, Neptune treats every vessel, department, vendor, certificate, work order, inspection, and approval as connected operating intelligence.</p>
-              <div className="workflow-stack">
-                {workflowCards.slice(0, 3).map(([title, text]) => (
-                  <div className="workflow-item" key={title}><b>{title}</b><span>{text}</span></div>
-                ))}
-              </div>
-            </div>
-            <div className="panel vessel-card">
-              <div className="vessel-header"><span className="brand-mark mini">◈</span><div><span className="eyebrow">Vessel Account</span><h3>MV Neptune Trader</h3></div></div>
-              <div className="vessel-timeline">
-                <div><b>07:10</b><span>Chief Engineer opened main engine defect record.</span></div>
-                <div><b>08:35</b><span>Captain approved hot work permit with attached checklist.</span></div>
-                <div><b>10:45</b><span>Procurement matched critical spare to vendor quote.</span></div>
-                <div><b>13:20</b><span>Shore manager reviewed PSC readiness evidence pack.</span></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section product-section">
-          <div className="container">
-            <div className="section-head">
-              <div><div className="eyebrow">Core Modules</div><h2>Built like a premium maritime operating system.</h2></div>
-              <p>The landing page now explains Neptune as the actual product: a CRM and dashboard for captains and department heads, not a lead-generation site.</p>
-            </div>
+            <div className="section-head"><div><div className="eyebrow">Condensed Command Modules</div><h2>Clean grouped navigation instead of a crowded sidebar.</h2></div><p>The real product keeps the Neptune1 premium feel while grouping the operating system into fewer, clearer sections for mobile crews and shore teams.</p></div>
             <div className="grid-3 premium-grid">
-              {workflowCards.map(([title, text], i) => (
-                <article className="card premium-card" key={title}>
-                  <div className="icon">{String(i + 1).padStart(2, "0")}</div>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
+              {moduleGroups.map(([title, text]) => <article className="card premium-card" key={title}><div className="icon">✦</div><h3>{title}</h3><p>{text}</p></article>)}
             </div>
+          </div>
+        </section>
+
+        <section className="section compact-section">
+          <div className="container split-showcase">
+            <div className="glass command-console premium-glow">
+              <div className="console-top"><div><span className="eyebrow">MT Atlantic Pioneer</span><h3>Captain Command Queue</h3></div><span className="status green-status">Ready 92%</span></div>
+              <div className="ops-list">{activity.map(([time, title, status]) => <div className="ops-row" key={title}><div><b>{title}</b><span>{time} · {status}</span></div><em>Open</em></div>)}</div>
+            </div>
+            <div>
+              <div className="eyebrow">Why it matters</div>
+              <h2>Operational memory for every vessel.</h2>
+              <p className="lede small-lede">Every approval, certificate, inspection, incident, work order, quote, and handover stays connected to the vessel record. Neptune turns daily shipboard work into searchable, auditable intelligence.</p>
+              <Link href="/checkout" className="btn gold">Unlock the dashboard</Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="section compact-section">
+          <div className="container">
+            <div className="section-head"><div><div className="eyebrow">Resources</div><h2>Built-in operating playbooks.</h2></div><Link className="btn" href="/resources">Open resources</Link></div>
+            <div className="grid-3 resource-grid">{resources.map(([title, text]) => <article className="card" key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
           </div>
         </section>
 
         <section className="section final-cta">
-          <div className="container panel cta-panel">
-            <div><div className="eyebrow">Neptune Product</div><h2>Move from demo UI to a real vessel command platform.</h2><p>Next we connect real authentication, database-backed vessel records, role permissions, and department workflows.</p></div>
-            <Link className="btn gold" href="/login">Enter admin dashboard</Link>
+          <div className="container panel cta-panel premium-glow">
+            <div><div className="eyebrow">Stripe Paywall Ready</div><h2>Access starts at checkout.</h2><p>Visitors can explore the landing page and resources. The dashboard is gated behind login and subscription status.</p></div>
+            <Link className="btn gold" href="/checkout">Go to payment</Link>
           </div>
         </section>
       </main>
