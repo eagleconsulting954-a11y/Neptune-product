@@ -6,17 +6,27 @@ export function CheckoutButton({ label = "Continue to payment", plan = "fleetops
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  async function startCheckout() {
+    setLoading(true);
+    setMessage("");
+    const res = await fetch("/api/stripe/checkout", { method: "POST", body: JSON.stringify({ plan }), headers: { "content-type": "application/json" } });
+    const data = await res.json();
+    if (data.mode === "demo") setMessage(data.message);
+    if (data.url) window.location.href = data.url;
+    else setLoading(false);
+  }
+
   async function unlockDemo() {
     setLoading(true);
-    setMessage(`Activating ${plan} access...`);
+    setMessage(`Activating ${plan} demo access...`);
     await fetch("/api/billing/activate", { method: "POST" });
     window.location.href = "/admin";
   }
 
   return (
     <div className="checkout-actions">
-      <button className="btn gold" onClick={unlockDemo} disabled={loading}>{loading ? "Unlocking..." : label}</button>
-      <button className="btn" onClick={() => setMessage("Connect your live Stripe Payment Link in Vercel, then swap this demo action to redirect to Stripe Checkout.")}>Stripe setup note</button>
+      <button className="btn gold" onClick={startCheckout} disabled={loading}>{loading ? "Preparing..." : label}</button>
+      <button className="btn" onClick={unlockDemo} disabled={loading}>Demo unlock</button>
       {message && <p className="small-lede">{message}</p>}
     </div>
   );
